@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Get release info
         id: release_info
@@ -35,8 +35,14 @@ jobs:
 
       - name: Update Homebrew formula
         run: |
-          sed -i "s/version \".*\"/version \"${{ steps.release_info.outputs.version }}\"/g" hiramu-cli.rb
-          sed -i "s/sha256 \".*\"/sha256 \"${{ steps.sha256.outputs.sha256 }}\"/g" hiramu-cli.rb
+          brew install yq
+          yq -i '.version = "${{ steps.release_info.outputs.version }}"' hiramu-cli.rb
+          yq -i '.sha256 = "${{ steps.sha256.outputs.sha256 }}"' hiramu-cli.rb
+
+      - name: Test Homebrew formula
+        run: |
+          brew install --build-from-source ./hiramu-cli.rb
+          hiramu-cli --version
 
       - name: Commit and push changes
         run: |
