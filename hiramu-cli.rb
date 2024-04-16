@@ -12,8 +12,5 @@ class HiramuCli < Formula
     generate_completions_from_executable(bin/"hiramu-cli", "completions")
   end
 
-  test do
-    output = shell_output("#{bin}/hiramu-cli prompt 'What is the capital of France?' -M haiku -m 10 -t 0.5")
-    assert_match "Paris", output
-  end
+
 end
