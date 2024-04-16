@@ -33,6 +33,14 @@ jobs:
           SHA256=$(curl -sL "${{ steps.release_info.outputs.url }}" | shasum -a 256 | awk '{ print $1 }')
           echo "::set-output name=sha256::$SHA256"
 
+      - name: Set up Homebrew
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y build-essential procps curl file git
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+          brew --version
+
       - name: Update Homebrew formula
         run: |
           brew install yq
