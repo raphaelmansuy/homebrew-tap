@@ -1,0 +1,37 @@
+name: Update Homebrew Formula
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  update_formula:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Get release info
+        id: release_info
+        run: |
+          echo "::set-output name=version::$(echo ${{ github.ref }} | cut -d '/' -f3)"
+          echo "::set-output name=url::https://github.com/${{ github.repository }}/archive/refs/tags/${{ github.ref }}.tar.gz"
+
+      - name: Calculate SHA256
+        id: sha256
+        run: |
+          SHA256=$(curl -sL "${{ steps.release_info.outputs.url }}" | shasum -a 256 | awk '{ print $1 }')
+          echo "::set-output name=sha256::$SHA256"
+
+      - name: Update Homebrew formula
+        run: |
+          sed -i "s/version \".*\"/version \"${{ steps.release_info.outputs.version }}\"/g" hiramu-cli.rb
+          sed -i "s/sha256 \".*\"/sha256 \"${{ steps.sha256.outputs.sha256 }}\"/g" hiramu-cli.rb
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add hiramu-cli.rb
+          git commit -m "Update Homebrew formula for version ${{ steps.release_info.outputs.version }}"
+          git push
