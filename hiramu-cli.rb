@@ -1,14 +1,19 @@
 class HiramuCli < Formula
-  desc "A CLI tool for interacting with LLMs"
+  desc "A CLI tool for interacting with large language models"
   homepage "https://github.com/raphaelmansuy/hiramu-cli"
-  version "v0.1.7"
-  url "https://github.com/raphaelmansuy/hiramu-cli/archive/refs/tags/#{version}.tar.gz"
-  sha256 "REPLACE_WITH_ACTUAL_SHA256_HASH"
+  url "https://github.com/raphaelmansuy/hiramu-cli/archive/refs/tags/v0.1.8.tar.gz"
+  sha256 sha256sum("https://github.com/raphaelmansuy/hiramu-cli/archive/refs/tags/v0.1.8.tar.gz")
   license "Apache-2.0"
 
   depends_on "rust" => :build
 
   def install
     system "cargo", "install", *std_cargo_args
+    generate_completions_from_executable(bin/"hiramu-cli", "completions")
+  end
+
+  test do
+    output = shell_output("#{bin}/hiramu-cli prompt 'What is the capital of France?' -M haiku -m 10 -t 0.5")
+    assert_match "Paris", output
   end
 end
