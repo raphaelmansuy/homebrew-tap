@@ -1,6 +1,11 @@
 name: Update Homebrew Formula
 
 on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Release version'
+        required: true
   release:
     types: [published]
 
@@ -14,8 +19,13 @@ jobs:
       - name: Get release info
         id: release_info
         run: |
-          echo "::set-output name=version::$(echo ${{ github.ref }} | cut -d '/' -f3)"
-          echo "::set-output name=url::https://github.com/${{ github.repository }}/archive/refs/tags/${{ github.ref }}.tar.gz"
+          if [ "${{ github.event_name }}" == "workflow_dispatch" ]; then
+            echo "::set-output name=version::${{ github.event.inputs.version }}"
+            echo "::set-output name=url::https://github.com/${{ github.repository }}/archive/refs/tags/${{ github.event.inputs.version }}.tar.gz"
+          else
+            echo "::set-output name=version::$(echo ${{ github.ref }} | cut -d '/' -f3)"
+            echo "::set-output name=url::https://github.com/${{ github.repository }}/archive/refs/tags/${{ github.ref }}.tar.gz"
+          fi
 
       - name: Calculate SHA256
         id: sha256
