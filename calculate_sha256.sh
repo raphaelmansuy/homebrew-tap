@@ -5,7 +5,7 @@ GITHUB_USERNAME="raphaelmansuy"
 REPO_NAME="hiramu-cli"
 
 # Set the release tag
-RELEASE_TAG="v0.1.14"
+RELEASE_TAG="v0.1.15"
 
 # Construct the URL for the release tarball
 RELEASE_URL="https://github.com/${GITHUB_USERNAME}/${REPO_NAME}/archive/refs/tags/${RELEASE_TAG}.tar.gz"
