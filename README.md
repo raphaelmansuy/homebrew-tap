@@ -1,4 +1,44 @@
 
+# homebrew-tap
+
+Homebrew tap for [raphaelmansuy](https://github.com/raphaelmansuy)'s tools.
+
+## Available Formulae
+
+| Formula | Description | Install |
+|---------|-------------|---------|
+| `edgeparse` | High-performance PDF extraction engine (Rust) | `brew install raphaelmansuy/tap/edgeparse` |
+| `hiramu-cli` | CLI for large language models | `brew install raphaelmansuy/tap/hiramu-cli` |
+
+---
+
+## EdgeParse
+
+[EdgeParse](https://github.com/raphaelmansuy/edgeparse) is a fast, zero-dependency Rust PDF extraction engine:
+
+```bash
+brew tap raphaelmansuy/tap
+brew install edgeparse
+edgeparse --version
+```
+
+Quick start:
+
+```bash
+edgeparse document.pdf -f markdown -o output/   # Markdown
+edgeparse document.pdf -f json -o output/        # JSON with bounding boxes
+edgeparse *.pdf -f markdown -o output/ --quiet   # Batch
+edgeparse document.pdf --pages "1-5" -f markdown # Page range
+```
+
+Agent skill:
+
+```bash
+npx skills add raphaelmansuy/run-edgeparse
+```
+
+---
+
 ## Hiramu CLI
 
 Hiramu CLI is a command-line interface (CLI) tool for interacting with large language models. It allows you to easily access and utilize the power of these models for various tasks, such as text generation, question answering, and more.
