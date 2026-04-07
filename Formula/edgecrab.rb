@@ -19,6 +19,6 @@ class Edgecrab < Formula
   end
 
   test do
-    assert_match "EdgeCrab", shell_output("#{bin}/edgecrab --version")
+    assert_match version.to_s, shell_output("#{bin}/edgecrab --version")
   end
 end
