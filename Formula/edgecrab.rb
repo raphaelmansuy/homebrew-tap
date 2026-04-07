@@ -1,16 +1,16 @@
 class Edgecrab < Formula
   desc "AI-native terminal agent with 74+ tools, code execution, and 15 messaging gateways"
   homepage "https://github.com/raphaelmansuy/edgecrab"
-  version "0.1.1"
+  version "0.1.2"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.arm?
-      url "https://github.com/raphaelmansuy/edgecrab/releases/download/v0.1.1/edgecrab-aarch64-apple-darwin.tar.gz"
-      sha256 "12c75561c0daae7212373b6cb8f409475122375739041ec3c7b386c2d259fad5"
+      url "https://github.com/raphaelmansuy/edgecrab/releases/download/v0.1.2/edgecrab-aarch64-apple-darwin.tar.gz"
+      sha256 "18aabad24b682abd2b3d3663cc10b682b11d719367ddcd91f74028dabe5e8da5"
     else
-      url "https://github.com/raphaelmansuy/edgecrab/releases/download/v0.1.1/edgecrab-x86_64-apple-darwin.tar.gz"
-      sha256 "bf9085b94d457c133b2788c6ba0854e53acb8ba9a4177865bd3807f44b0b50d4"
+      url "https://github.com/raphaelmansuy/edgecrab/releases/download/v0.1.2/edgecrab-x86_64-apple-darwin.tar.gz"
+      sha256 "fdbc8e7b0c68954b250444d0d038402899c9ecc04087080ed20f47e6c45eb285"
     end
   end
 
