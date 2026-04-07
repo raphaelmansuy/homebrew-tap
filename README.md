@@ -13,11 +13,33 @@ brew tap raphaelmansuy/tap
 
 | Formula | Description | Install |
 |---------|-------------|---------|
+| [`edgecrab`](#edgecrab) | AI-native terminal agent with 74+ tools | `brew install raphaelmansuy/tap/edgecrab` |
 | [`edgeparse`](#edgeparse) | High-performance PDF extraction engine (Rust) | `brew install raphaelmansuy/tap/edgeparse` |
 
 ---
 
-## EdgeParse
+## EdgeCrab
+
+[EdgeCrab](https://github.com/raphaelmansuy/edgecrab) is a fast, AI-native terminal agent featuring 74+ built-in tools, code execution, real-time reasoning, and integration with 15 messaging gateways (Telegram, Slack, Discord, etc.).
+
+### Install via Homebrew
+
+```bash
+brew tap raphaelmansuy/tap
+brew install edgecrab
+edgecrab --version
+```
+
+### Quick Start
+
+```bash
+edgecrab                          # Start interactive terminal
+edgecrab --help                   # Show all commands
+```
+
+---
+
+## EdgeParse (Legacy)
 
 [EdgeParse](https://github.com/raphaelmansuy/edgeparse) is a fast, zero-dependency Rust PDF extraction engine that converts PDFs to Markdown, JSON, HTML, or plain text.
 
