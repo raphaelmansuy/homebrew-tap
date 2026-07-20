@@ -7,10 +7,10 @@ class Edgecrab < Formula
   on_macos do
     if Hardware::CPU.arm?
       url "https://github.com/raphaelmansuy/edgecrab/releases/download/v0.11.0/edgecrab-aarch64-apple-darwin.tar.gz"
-      sha256 "72b4216e5e8e3c5b16b960bf1f1d9040189e521eb7510966b091f8881c52e2c8"
+      sha256 "bd505af50a9eb85c2b743f29adea9e56fe4a81ac28bcd9fa4d35ef12e0c205e7"
     else
       url "https://github.com/raphaelmansuy/edgecrab/releases/download/v0.11.0/edgecrab-x86_64-apple-darwin.tar.gz"
-      sha256 "fd0b8368bfbc52468e053a5316cdf948ec312b6c6957e1de49fce52b2dbccbcd"
+      sha256 "e3d7c05d0879f1cfafa8416220008d0c3bd622234633f601ab45269fc316bbf1"
     end
   end
 
